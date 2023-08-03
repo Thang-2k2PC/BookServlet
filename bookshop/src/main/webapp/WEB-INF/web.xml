@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+         version="5.0">
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+    <listener>
+        <listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
+    </listener>
+
+    <filter>
+        <filter-name>servletFilter</filter-name>
+        <filter-class>com.bookshop.filter.AuthorizationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>servletFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <context-param>
+        <param-name>rootDirectory</param-name>
+        <param-value>D:\Servlet\bookshop\src\main\webapp\resources\images</param-value>
+    </context-param>
+
+    <!--file này sẽ chạy lên đầu tiên index.jsp nó sẽ chuyển hướng tới trang
+		chủ http://localhost:22430/WebserviceBH/trang-chu;jsessionid=11d15336acfaca71ca1778e19991
+		để mất jsessionid ta sử dụng session-config -->
+    <session-config>
+        <tracking-mode>COOKIE</tracking-mode>
+    </session-config>
+
+</web-app>
